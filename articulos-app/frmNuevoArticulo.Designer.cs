@@ -45,7 +45,7 @@
             this.pbNuevoArticulo = new System.Windows.Forms.PictureBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBorrarTextBox = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbNuevoArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -195,22 +195,22 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // button1
+            // btnBorrarTextBox
             // 
-            this.button1.Location = new System.Drawing.Point(265, 240);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 20);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "DEL";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBorrarTextBox.Location = new System.Drawing.Point(265, 240);
+            this.btnBorrarTextBox.Name = "btnBorrarTextBox";
+            this.btnBorrarTextBox.Size = new System.Drawing.Size(38, 20);
+            this.btnBorrarTextBox.TabIndex = 15;
+            this.btnBorrarTextBox.Text = "DEL";
+            this.btnBorrarTextBox.UseVisualStyleBackColor = true;
+            this.btnBorrarTextBox.Click += new System.EventHandler(this.btnBorrarTextBox_Click);
             // 
             // frmNuevoArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 422);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBorrarTextBox);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.pbNuevoArticulo);
@@ -257,6 +257,6 @@
         private System.Windows.Forms.PictureBox pbNuevoArticulo;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBorrarTextBox;
     }
 }

@@ -39,6 +39,8 @@ namespace articulos_app
         {
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
+            dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "C";
+
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -78,7 +80,7 @@ namespace articulos_app
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Estas seguro de eliminarlo?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminarlo?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
                 ArticuloNegocio negocio = new ArticuloNegocio();

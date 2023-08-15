@@ -72,9 +72,13 @@ namespace articulos_app
                     modificado.ImagenUrl = txtImagenUrl.Text;
                     modificado.Precio = decimal.Parse(txtPrecio.Text);
 
-                    negocio.modificar(modificado);
-                    MessageBox.Show("Modificado exitosamente!");
-                    Close();
+                    DialogResult respuesta = MessageBox.Show("¿Estas seguro de modificarlo?", "Modificando...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        negocio.modificar(modificado);
+                        MessageBox.Show("Modificado exitosamente.");
+                        Close();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -145,7 +149,7 @@ namespace articulos_app
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBorrarTextBox_Click(object sender, EventArgs e)
         {
             txtImagenUrl.Text = "";
         }
