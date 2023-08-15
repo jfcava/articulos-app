@@ -168,8 +168,49 @@ namespace negocio
                                 break;
                         }
                         break;
-                    default:
+                    case "Marca":
+                        switch (criterio)
+                        {
+                            case "Empieza con":
+                                consulta += "M.Descripcion like '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += "M.Descripcion like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += "M.Descripcion like '%" + filtro + "%'";
+                                break;
+                        }
                         break;
+                    case "Categoria":
+                        switch (criterio)
+                        {
+                            case "Empieza con":
+                                consulta += "C.Descripcion like '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += "C.Descripcion like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += "C.Descripcion like '%" + filtro + "%'";
+                                break;
+                        }
+                        break;
+                    default:
+                        switch (criterio)
+                        {
+                            case "Mayor a":
+                                consulta += "A.Precio > " + filtro;
+                                break;
+                            case "Menor a":
+                                consulta += "A.Precio < " + filtro;
+                                break;                            
+                            default:
+                                consulta += "A.Precio = " + filtro;
+                                break;
+                        }
+                        break;
+
                 }
 
                 datos.setearConsulta(consulta);
