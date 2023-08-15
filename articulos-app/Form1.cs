@@ -23,7 +23,12 @@ namespace articulos_app
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
-            pbImagenArticulo.Load(listaArticulos[0].ImagenUrl);
+
+            cboCampo.Items.Add("Código");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Marca");
+            cboCampo.Items.Add("Categoria");
+            cboCampo.Items.Add("Precio");
         }
 
         private void cargar()
@@ -116,6 +121,64 @@ namespace articulos_app
             dgvArticulos.DataSource = filtrada;
             ocultarColumnas();
 
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string seleccionado = cboCampo.SelectedItem.ToString();
+
+            switch (seleccionado)
+            {
+                case "Código":
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Empieza con");
+                    cboCriterio.Items.Add("Termina con");
+                    cboCriterio.Items.Add("Contiene");
+                    break;
+                case "Marca":
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Empieza con");
+                    cboCriterio.Items.Add("Termina con");
+                    cboCriterio.Items.Add("Contiene");
+                    break;
+                case "Nombre":
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Empieza con");
+                    cboCriterio.Items.Add("Termina con");
+                    cboCriterio.Items.Add("Contiene");
+                    break;
+                case "Precio":
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Mayor a");
+                    cboCriterio.Items.Add("Menor a");
+                    cboCriterio.Items.Add("Igual a");
+                    break;
+                default:
+                    cboCriterio.Items.Clear();
+                    cboCriterio.Items.Add("Empieza con");
+                    cboCriterio.Items.Add("Termina con");
+                    cboCriterio.Items.Add("Contiene");
+                    break;
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text;
+
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
