@@ -110,7 +110,7 @@ namespace articulos_app
         {
             MarcaNegocio negocio = new MarcaNegocio();
             CategoriaNegocio categoria = new CategoriaNegocio();
-            cargarImagen("https://st3.depositphotos.com/17828278/33150/v/450/depositphotos_331503262-stock-illustration-no-image-vector-symbol-missing.jpg");
+            cargarImagen("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png");
 
             try
             {

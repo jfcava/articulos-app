@@ -49,6 +49,8 @@
             // 
             // dgvArticulos
             // 
+            this.dgvArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulos.Location = new System.Drawing.Point(13, 74);
@@ -108,6 +110,9 @@
             // 
             // pbImagenArticulo
             // 
+            this.pbImagenArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbImagenArticulo.Location = new System.Drawing.Point(678, 74);
             this.pbImagenArticulo.Name = "pbImagenArticulo";
             this.pbImagenArticulo.Size = new System.Drawing.Size(383, 378);
@@ -117,6 +122,7 @@
             // 
             // lblCampo
             // 
+            this.lblCampo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCampo.AutoSize = true;
             this.lblCampo.Location = new System.Drawing.Point(10, 469);
             this.lblCampo.Name = "lblCampo";
@@ -126,6 +132,7 @@
             // 
             // cboCampo
             // 
+            this.cboCampo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.FormattingEnabled = true;
             this.cboCampo.Location = new System.Drawing.Point(59, 466);
@@ -136,6 +143,7 @@
             // 
             // lblCriterio
             // 
+            this.lblCriterio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCriterio.AutoSize = true;
             this.lblCriterio.Location = new System.Drawing.Point(186, 469);
             this.lblCriterio.Name = "lblCriterio";
@@ -145,6 +153,7 @@
             // 
             // cboCriterio
             // 
+            this.cboCriterio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.FormattingEnabled = true;
             this.cboCriterio.Location = new System.Drawing.Point(234, 466);
@@ -154,6 +163,7 @@
             // 
             // lblFiltro
             // 
+            this.lblFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblFiltro.AutoSize = true;
             this.lblFiltro.Location = new System.Drawing.Point(361, 469);
             this.lblFiltro.Name = "lblFiltro";
@@ -163,6 +173,7 @@
             // 
             // txtFiltroAvanzado
             // 
+            this.txtFiltroAvanzado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtFiltroAvanzado.Location = new System.Drawing.Point(399, 467);
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(168, 20);
@@ -170,6 +181,7 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.Location = new System.Drawing.Point(586, 464);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
@@ -208,6 +220,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.lblBuscar);
+            this.MinimumSize = new System.Drawing.Size(1088, 538);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TECNO App";

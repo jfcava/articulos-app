@@ -13,7 +13,6 @@ namespace negocio
 {
     public class ArticuloNegocio
     {
-
         public List<Articulo> listar()
         {
             AccesoDatos datos = new AccesoDatos();
