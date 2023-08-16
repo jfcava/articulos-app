@@ -49,7 +49,25 @@ namespace articulos_app
                     nuevo.Marca = (Marca)cbMarca.SelectedItem;
                     nuevo.Categoria = (Categoria)cbCategoria.SelectedItem;
                     nuevo.ImagenUrl = txtImagenUrl.Text;
-                    nuevo.Precio = int.Parse(txtPrecio.Text);
+                    nuevo.Precio = decimal.Parse(nudPrecio.Text);
+
+                    if (nuevo.Marca == null || nuevo.Categoria == null || nuevo.Codigo == "" || nuevo.Nombre == "")
+                    {
+                        if (nuevo.Categoria == null)
+                            lblCampoRequeridoCat.Text = "Campo requerido";
+
+                        if (nuevo.Marca == null)
+                            lblCampoReqMarca.Text = "Campo requerido";
+
+                        if (nuevo.Codigo == "")
+                            lblCampoReqCod.Text = "Campo requerido";
+
+                        if (nuevo.Nombre == "")
+                            lblCampoReqNombre.Text = "Campo requedio";
+
+                        return;
+                    }
+
 
                     negocio.agregar(nuevo);
                     MessageBox.Show("Agregado exitosamente.");
@@ -70,7 +88,7 @@ namespace articulos_app
                     modificado.Marca = (Marca)cbMarca.SelectedItem;
                     modificado.Categoria = (Categoria)cbCategoria.SelectedItem;
                     modificado.ImagenUrl = txtImagenUrl.Text;
-                    modificado.Precio = decimal.Parse(txtPrecio.Text);
+                    modificado.Precio = decimal.Parse(nudPrecio.Text);
 
                     DialogResult respuesta = MessageBox.Show("¿Estas seguro de modificarlo?", "Modificando...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
@@ -111,7 +129,7 @@ namespace articulos_app
                     cbMarca.SelectedValue = modificado.Marca.Id;
                     cbCategoria.SelectedValue = modificado.Categoria.Id;
                     txtImagenUrl.Text = modificado.ImagenUrl;
-                    txtPrecio.Text = modificado.Precio.ToString();
+                    nudPrecio.Text = modificado.Precio.ToString();
 
                     cargarImagen(modificado.ImagenUrl);
                 }
@@ -152,6 +170,38 @@ namespace articulos_app
         private void btnBorrarTextBox_Click(object sender, EventArgs e)
         {
             txtImagenUrl.Text = "";
+        }
+
+        private void cbMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbMarca.SelectedItem != null)
+            {
+                lblCampoReqMarca.Text = "";
+            }
+        }
+
+        private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCategoria.SelectedItem != null)
+            {
+                lblCampoRequeridoCat.Text = "";
+            }
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text != "")
+                lblCampoReqCod.Text = "";
+            else
+                lblCampoReqCod.Text = "Campo requerido";
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNombre.Text != "")
+                lblCampoReqNombre.Text = "";
+            else
+                lblCampoReqNombre.Text = "Campo requerido";
         }
     }
 

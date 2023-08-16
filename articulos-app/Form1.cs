@@ -29,6 +29,7 @@ namespace articulos_app
             cboCampo.Items.Add("Marca");
             cboCampo.Items.Add("Categoria");
             cboCampo.Items.Add("Precio");
+
         }
 
         private void cargar()
@@ -68,7 +69,10 @@ namespace articulos_app
         {
             try
             {
-                pbImagenArticulo.Load(url);
+                if(dgvArticulos.CurrentRow != null)
+                    pbImagenArticulo.Load(url);
+                else
+                    pbImagenArticulo.Load("https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg");
             }
             catch (Exception)
             {
@@ -85,29 +89,45 @@ namespace articulos_app
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminarlo?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (respuesta == DialogResult.Yes)
+            if (dgvArticulos.CurrentRow != null)
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                Articulo seleccionado = new Articulo();
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminarlo?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (respuesta == DialogResult.Yes)
+                {
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    Articulo seleccionado = new Articulo();
 
-                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                negocio.eliminar(seleccionado);
-                cargar();
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado);
+                    cargar();
+                    MessageBox.Show("Producto eliminado.");
+                }                
             }
-
-
-
+            else
+                MessageBox.Show("Debes seleccionar un producto.");
         }
 
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = new Articulo();
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            try
+            {
+                if (dgvArticulos.CurrentRow != null)
+                {
+                    Articulo seleccionado = new Articulo();
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
-            frmNuevoArticulo modificado = new frmNuevoArticulo(seleccionado);
-            modificado.ShowDialog();
-            cargar();
+                    frmNuevoArticulo modificado = new frmNuevoArticulo(seleccionado);
+                    modificado.ShowDialog();
+                    cargar();
+
+                }
+                else
+                    MessageBox.Show("Debes seleccionar un producto.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -120,6 +140,22 @@ namespace articulos_app
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = filtrada;
             ocultarColumnas();
+            cargarImagen("https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg");
+
+            //Validacion para que no se pueda presionar en el btn Ver Detalle, y al no tener nada seleccionado
+            //la app se rompa
+
+            if (dgvArticulos.SelectedRows.Count == 0)
+            {
+                btnVerDetalle.Enabled = false;
+                btnEliminar.Enabled = false;
+            }
+            else
+            {
+                btnVerDetalle.Enabled = true;
+                btnEliminar.Enabled = true;
+                dgvArticulos.ClearSelection();
+            }
 
         }
 
@@ -161,6 +197,30 @@ namespace articulos_app
                     break;
             }
         }
+        private bool validarFiltro()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debes seleccionar un campo para buscar.");
+                return true;
+            }
+
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debes seleccionar un criterio para buscar.");
+                return true;
+            }
+
+            if (cboCampo.SelectedItem.ToString() == "Precio")
+            {
+                if (!(esNumero(txtFiltroAvanzado.Text)) || txtFiltroAvanzado.Text == "")
+                {
+                    MessageBox.Show("Debes ingresar números para buscar por precio.");
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -168,17 +228,37 @@ namespace articulos_app
 
             try
             {
+                if (validarFiltro())
+                {
+                    return;
+                }
+
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAvanzado.Text;
-
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        private bool esNumero(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Text = "";
         }
     }
 }

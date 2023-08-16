@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace negocio
 {
@@ -61,7 +62,7 @@ namespace negocio
                 datos.setearConsulta("insert into ARTICULOS values (@codigo,@nombre,@descripcion,@idMarca,@idCategoria,@urlImagen,@precio)");
                 datos.setearParametros("@codigo", nuevo.Codigo);
                 datos.setearParametros("@nombre", nuevo.Nombre);
-                datos.setearParametros("descripcion", nuevo.Descripcion);
+                datos.setearParametros("descripcion", nuevo.Descripcion);                
                 datos.setearParametros("idMarca", nuevo.Marca.Id);
                 datos.setearParametros("@idCategoria", nuevo.Categoria.Id);
                 datos.setearParametros("@urlImagen", nuevo.ImagenUrl);
@@ -71,8 +72,8 @@ namespace negocio
 
             }
             catch (Exception ex)
-            {
-                throw ex;
+            {                
+                MessageBox.Show(ex.ToString());
             }
             finally
             {
